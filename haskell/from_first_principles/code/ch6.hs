@@ -56,3 +56,7 @@ instance (Eq a, Eq b) => Eq (EitherOr a b) where
     (==) (Hello x) (Hello y) = x == y
     (==) (Goodbye x) (Goodbye y) = x == y
     (==) _ _ = False
+
+-- Show
+instance Show Trivial where
+    show _ = "Trivial printed"
