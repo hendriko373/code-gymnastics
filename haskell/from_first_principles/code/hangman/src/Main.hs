@@ -40,34 +40,34 @@ randomWord wl = do
   i <- randomRIO (0, length wl - 1)
   return $ wl !! i
 
-data Puzzle = Puzzle String [Maybe Char] [Char]
+data Puzzle = Puzzle String [Maybe Char] [Char] Integer
 
 instance Show Puzzle where
-  show (Puzzle _ discovered guessed) =
+  show (Puzzle _ discovered guessed _) =
     (intersperse ' ' $ map renderPuzzleChar discovered)
     ++ " |> Guessed so far: " ++ guessed 
     where renderPuzzleChar Nothing  = '_'
           renderPuzzleChar (Just c) = c
 
 freshPuzzle :: String -> Puzzle
-freshPuzzle s = Puzzle s (map (\c -> Nothing) s) []
+freshPuzzle s = Puzzle s (map (\c -> Nothing) s) [] 0
 
 charInWord :: Puzzle -> Char -> Bool
-charInWord (Puzzle s _ _) c = elem c s
+charInWord (Puzzle s _ _ _) c = elem c s
 
 alreadyGuessed :: Puzzle -> Char -> Bool
-alreadyGuessed (Puzzle _ _ guessed) c = elem c guessed
+alreadyGuessed (Puzzle _ _ guessed _) c = elem c guessed
 
 fillInCharacter :: Puzzle -> Char -> Puzzle
-fillInCharacter (Puzzle goal discovered guessed) c =
-  Puzzle goal discovered' (c:guessed)
+fillInCharacter (Puzzle goal discovered guessed incorrect) c =
+  Puzzle goal discovered' (c:guessed) incorrect
   where discovered' = zipWith (zipper c) goal discovered
         zipper c' cg cd
           | c' == cg  = Just c'
           | otherwise = cd
 
 handleGuess :: Puzzle -> Char -> IO Puzzle
-handleGuess p c = do
+handleGuess p@(Puzzle goal discoverd guesses incorrect) c = do
   putStrLn $ "Your guess was " ++ [c]
   case (charInWord p c
       , alreadyGuessed p c) of
@@ -79,18 +79,21 @@ handleGuess p c = do
       return $ fillInCharacter p c
     (False, _) -> do
       putStrLn "Letter not in word. Guess again."
-      return $ fillInCharacter p c
+      putStrLn $ (show (7 - incorrect)) ++ " attempts left."
+      return $ increase $ fillInCharacter p c
+      where increase (Puzzle goal disc guessed incorrect) = 
+              Puzzle goal disc guessed (incorrect + 1)
 
 gameOver :: Puzzle -> IO ()
-gameOver (Puzzle goal _ guessed) =
-  if length guessed > 7 then
+gameOver (Puzzle goal _ guessed incorrect) =
+  if incorrect > 7 then
     do putStrLn "Game over!"
        putStrLn $ "The word was " ++ goal
        exitSuccess
   else return ()
 
 gameWin :: Puzzle -> IO ()
-gameWin (Puzzle _ discovered _) =
+gameWin (Puzzle _ discovered _ _) =
   if all isJust discovered then
     do putStrLn "You win!"
        exitSuccess
@@ -98,8 +101,8 @@ gameWin (Puzzle _ discovered _) =
 
 runGame :: Puzzle -> IO ()
 runGame puzzle = forever $ do
-  gameOver puzzle
   gameWin puzzle
+  gameOver puzzle
   putStrLn $ "Current puzzle is: " ++ show puzzle
   putStr "Guess a letter: "
   guess <- getLine
