@@ -1,7 +1,8 @@
 module Exercises where
 
 import Data.Monoid
-import Test.QuickCheck as QC
+import Test.QuickCheck
+import Test.QuickCheck.Gen.Unsafe
 
 -- First
 newtype First' a = First' (Maybe a)
@@ -74,14 +75,37 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Or a b) where
     arbitrary = do
         a <- arbitrary
         b <- arbitrary
-        frequency [(1, return $ Fst a), (1, return $ Fst b)]
+        frequency [(1, return $ Fst a), (1, return $ Snd b)]
 
 -- 9
 data Combine a b =
     Combine { unCombine :: (a -> b) }
 
-instance Num b => Semigroup (Combine a b) where
-    f <> g = Combine $ \x -> unCombine f x + unCombine g x
+instance Show (Combine a b) where
+    show _ = "default show for Combine" 
+
+instance Semigroup b => Semigroup (Combine a b) where
+    (Combine f) <> (Combine g) = Combine(\x -> f x <> g x)
+
+instance (CoArbitrary a, Arbitrary b) => Arbitrary (Combine a b) where
+    arbitrary = do
+        f <- arbitrary
+        return $ Combine f
+
+($$) :: (Combine a b) -> a -> b
+($$) (Combine f) x = f x
+
+isCombineAssociative :: (Arbitrary a, Show a, Eq b, Semigroup b) =>
+    (Combine a b)
+    -> (Combine a b)
+    -> (Combine a b)
+    -> Property
+isCombineAssociative c1 c2 c3
+    = forAll 
+        (vector 200)
+        (\v -> 
+            all (\x -> (c1 <> c2) $$ x <> c3 $$ x
+                    == c1 $$ x <> (c2 <> c3) $$ x) v)
 
 -- 11
 data Validation a b = 
@@ -122,3 +146,7 @@ test = do
     print "Testing semigroup associativity for Validation ..."
     quickCheck 
         (isAssociative :: (Validation String Int) -> (Validation String Int) -> (Validation String Int) -> Bool)
+
+    print "Testing semigroup associativity for Combine ..."
+    quickCheck 
+       (isCombineAssociative :: (Combine String (Sum Int)) -> (Combine String (Sum Int)) -> (Combine String (Sum Int)) -> Property)
