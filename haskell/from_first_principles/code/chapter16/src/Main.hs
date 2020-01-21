@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleInstances #-}
 module Main where
 
 import Test.QuickCheck
@@ -86,6 +87,65 @@ data Sum a b = First a | Second b deriving (Show, Eq)
 instance Functor (Sum r) where
   fmap f (First x)  = First x
   fmap f (Second y) = Second $ f y
+
+-- Chapter exercises
+
+-- 2
+data Company a b c =
+    DeepBlue a b
+  | Something c
+
+instance Functor (Company e e') where
+  fmap f (Something z)  = Something (f z)
+  fmap _ (DeepBlue x y) = DeepBlue x y
+
+-- 3
+data More a b =
+    L b a b
+  | R a b a
+  deriving (Eq, Show)
+
+instance Functor (More x) where
+  fmap f (L a b a') = L (f a) b (f a')
+  fmap f (R b a b') = R b (f a) b'
+
+-- 1
+data Quant e a =
+    Finance
+  | Desk e
+  | Floor a
+
+instance Functor (Quant e) where
+  fmap _ Finance = Finance
+  fmap _ (Desk x) = Desk x
+  fmap f (Floor y) = Floor $ f y
+
+-- 3
+newtype Flip f e a =
+  Flip (f a e)
+  deriving (Eq, Show)
+
+newtype K c d =
+  K c
+
+instance Functor (Flip K e) where
+ fmap g (Flip (K a)) = Flip (K (g a))
+
+-- 5
+data LiftItOut f a =
+  LiftItOut (f a)
+
+instance Functor f => Functor (LiftItOut f) where
+  fmap g (LiftItOut fa) = LiftItOut $ fmap g fa
+
+-- 9
+data List a =
+    Nil
+  | Cons a (List a)
+
+instance Functor List where
+  fmap _ Nil = Nil
+  fmap f (Cons a as) = Cons (f a) (fmap f as)
 
 main :: IO ()
 main = do
