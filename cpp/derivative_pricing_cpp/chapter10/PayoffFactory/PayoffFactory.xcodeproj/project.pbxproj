@@ -1,0 +1,275 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B1196EB51C99ACE5004E9BB5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1196EB41C99ACE5004E9BB5 /* main.cpp */; };
+		B1196EBD1C99AD15004E9BB5 /* PayoffFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1196EBB1C99AD15004E9BB5 /* PayoffFactory.cpp */; };
+		B1196EC21C99AE0C004E9BB5 /* payoff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1196EBE1C99AE0C004E9BB5 /* payoff.cpp */; };
+		B1196EC31C99AE0C004E9BB5 /* PayoffPower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1196EC01C99AE0C004E9BB5 /* PayoffPower.cpp */; };
+		B19CDDF21C9AF99A00B4DEDC /* PayoffRegistration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B19CDDF11C9AF99A00B4DEDC /* PayoffRegistration.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B1196EAF1C99ACE5004E9BB5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B1196EB11C99ACE5004E9BB5 /* PayoffFactory */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PayoffFactory; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1196EB41C99ACE5004E9BB5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B1196EBB1C99AD15004E9BB5 /* PayoffFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PayoffFactory.cpp; sourceTree = "<group>"; };
+		B1196EBC1C99AD15004E9BB5 /* PayoffFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PayoffFactory.hpp; sourceTree = "<group>"; };
+		B1196EBE1C99AE0C004E9BB5 /* payoff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = payoff.cpp; path = payoff/payoff.cpp; sourceTree = "<group>"; };
+		B1196EBF1C99AE0C004E9BB5 /* payoff.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = payoff.hpp; path = payoff/payoff.hpp; sourceTree = "<group>"; };
+		B1196EC01C99AE0C004E9BB5 /* PayoffPower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PayoffPower.cpp; path = payoff/PayoffPower.cpp; sourceTree = "<group>"; };
+		B1196EC11C99AE0C004E9BB5 /* PayoffPower.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PayoffPower.hpp; path = payoff/PayoffPower.hpp; sourceTree = "<group>"; };
+		B19CDDF11C9AF99A00B4DEDC /* PayoffRegistration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PayoffRegistration.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B1196EAE1C99ACE5004E9BB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B1196EA81C99ACE5004E9BB5 = {
+			isa = PBXGroup;
+			children = (
+				B1196EC41C99AE1B004E9BB5 /* Payoff */,
+				B1196EB31C99ACE5004E9BB5 /* PayoffFactory */,
+				B1196EB21C99ACE5004E9BB5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B1196EB21C99ACE5004E9BB5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1196EB11C99ACE5004E9BB5 /* PayoffFactory */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1196EB31C99ACE5004E9BB5 /* PayoffFactory */ = {
+			isa = PBXGroup;
+			children = (
+				B1196EB41C99ACE5004E9BB5 /* main.cpp */,
+				B1196EBB1C99AD15004E9BB5 /* PayoffFactory.cpp */,
+				B1196EBC1C99AD15004E9BB5 /* PayoffFactory.hpp */,
+				B19CDDF11C9AF99A00B4DEDC /* PayoffRegistration.cpp */,
+			);
+			path = PayoffFactory;
+			sourceTree = "<group>";
+		};
+		B1196EC41C99AE1B004E9BB5 /* Payoff */ = {
+			isa = PBXGroup;
+			children = (
+				B1196EBE1C99AE0C004E9BB5 /* payoff.cpp */,
+				B1196EBF1C99AE0C004E9BB5 /* payoff.hpp */,
+				B1196EC01C99AE0C004E9BB5 /* PayoffPower.cpp */,
+				B1196EC11C99AE0C004E9BB5 /* PayoffPower.hpp */,
+			);
+			name = Payoff;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1196EB01C99ACE5004E9BB5 /* PayoffFactory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1196EB81C99ACE5004E9BB5 /* Build configuration list for PBXNativeTarget "PayoffFactory" */;
+			buildPhases = (
+				B1196EAD1C99ACE5004E9BB5 /* Sources */,
+				B1196EAE1C99ACE5004E9BB5 /* Frameworks */,
+				B1196EAF1C99ACE5004E9BB5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PayoffFactory;
+			productName = PayoffFactory;
+			productReference = B1196EB11C99ACE5004E9BB5 /* PayoffFactory */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B1196EA91C99ACE5004E9BB5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Hendrik Jennen";
+				TargetAttributes = {
+					B1196EB01C99ACE5004E9BB5 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = B1196EAC1C99ACE5004E9BB5 /* Build configuration list for PBXProject "PayoffFactory" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B1196EA81C99ACE5004E9BB5;
+			productRefGroup = B1196EB21C99ACE5004E9BB5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1196EB01C99ACE5004E9BB5 /* PayoffFactory */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B1196EAD1C99ACE5004E9BB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1196EB51C99ACE5004E9BB5 /* main.cpp in Sources */,
+				B1196EC21C99AE0C004E9BB5 /* payoff.cpp in Sources */,
+				B1196EC31C99AE0C004E9BB5 /* PayoffPower.cpp in Sources */,
+				B1196EBD1C99AD15004E9BB5 /* PayoffFactory.cpp in Sources */,
+				B19CDDF21C9AF99A00B4DEDC /* PayoffRegistration.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B1196EB61C99ACE5004E9BB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B1196EB71C99ACE5004E9BB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B1196EB91C99ACE5004E9BB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B1196EBA1C99ACE5004E9BB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B1196EAC1C99ACE5004E9BB5 /* Build configuration list for PBXProject "PayoffFactory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1196EB61C99ACE5004E9BB5 /* Debug */,
+				B1196EB71C99ACE5004E9BB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1196EB81C99ACE5004E9BB5 /* Build configuration list for PBXNativeTarget "PayoffFactory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1196EB91C99ACE5004E9BB5 /* Debug */,
+				B1196EBA1C99ACE5004E9BB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B1196EA91C99ACE5004E9BB5 /* Project object */;
+}
