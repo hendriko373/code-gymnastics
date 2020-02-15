@@ -1,0 +1,6 @@
+We cannot benefit from the use of iterators without changing the elements of
+the vector to which the iterators are pointing. In order to assure that the
+vector passed as an argument to median is not changed, one could pass
+immutable iterators, but in order to compute the median one would need to
+sort a copy of the range delimited by the iterators. This would clearly spoil
+any looked for performance improvement.

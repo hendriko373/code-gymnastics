@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using std::vector;	using std::string;
+using std::cout;		using std::cin;
+using std::endl;
+
+int main() {
+
+	cout << "Please enter a list of strings:" << endl;
+	typedef string::size_type str_sz;
+	vector<str_sz> length;
+
+	string x;
+	// invariant: length contains the lengths of the strings read in so far
+	while (cin >> x)
+		length.push_back(x.size());
+
+	sort(length.begin(),length.end());
+
+	cout << "The shortest string has length " << length[0]
+		<< ", and the longest string has length " << length[length.size()-1]
+		<< "." << endl;
+
+	return 0;
+}

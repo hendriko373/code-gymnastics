@@ -1,0 +1,17 @@
+<noun> dog
+<noun> cat
+<noun> woman
+<adjective> big
+<adjective> hungry
+<adjective> beautiful
+<noun-phrase> <adjective> <noun-phrase>
+<noun-phrase> <noun>
+<verb> walks
+<verb> eats
+<verb> sleeps
+<verb> runs
+<location> in the church
+<location> in the garden
+<location> out of town
+<location> at McDonalds
+<sentence> The <noun-phrase> <verb> <location>

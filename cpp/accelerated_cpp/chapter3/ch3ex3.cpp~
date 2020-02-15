@@ -1,0 +1,70 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using std::cin;		using std::cout;
+using std::string;	using std::endl;
+using std::vector;
+
+int main() {
+
+	cout << "Please enter a list of words, "
+				"followed by end-of-file." << endl;
+	vector<string> read_words;
+	string x;
+	// invariant: read_words contains the words read so far
+	while (cin >> x)
+		read_words.push_back(x);
+
+	typedef vector<string>::size_type vec_sz;
+	vec_sz size = read_words.size();
+
+	if (size == 0) {
+		cout << "You must enter some words. "
+					"Please try again." << endl;
+		return 1;
+	}
+
+	vector<string> words;
+	vector<vec_sz> count;
+	
+	// compute the distinct words and their number of appearances
+	bool contains;
+
+	// invariant: we have evaluated i words from read_words. If the i-th
+	//		word was not evaluated before, it will be stored in words and its
+	//		number of appearances in count --- both at the same index.
+	for (vec_sz i = 0; i != size; ++i) {
+
+		// bool check if we already evaluated the i-th word
+		contains = false;
+
+		// invariant: we have checked k words of words whether they are equal to
+		// the i-th word of read_words
+		for (vec_sz k = 0; k != words.size() && contains == false; ++k) {
+			if (read_words[i] == words[k])
+			  contains = true;
+		}
+
+		if (contains == false){
+			words.push_back(read_words[i]);
+			count.push_back(1);
+			// invariant: we have checked j words following the i-th string in
+			// read_words whether they be equal to read_words[i]
+			for (vec_sz j = 0; j != size - (i+1); ++j) {
+				if (read_words[i+1+j] == read_words[i]) {
+					++count[i];
+				}
+			}
+		}
+	}
+	
+	// print the distinct words and their number of appearances
+	cout << endl << endl;
+	vec_sz sz_wrds = words.size();
+	// invariant: we have printed i distinct words and their
+	//		number of appearances
+	for (vec_sz i = 0; i != sz_wrds; ++i)
+		cout << words[i] << " \t" << count[i] << endl;
+	return 0;
+}
