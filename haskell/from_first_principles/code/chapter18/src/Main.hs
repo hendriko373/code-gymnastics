@@ -1,5 +1,6 @@
 module Main where
 
+import Control.Monad
 import Test.QuickCheck
 import Test.QuickCheck.Checkers
 import Test.QuickCheck.Classes
@@ -31,7 +32,18 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Sum a b) where
     b <- arbitrary
     frequency [(1, return $ First a), (1, return $ Second b)]
 
-testSum = quickBatch $ monad (undefined :: Sum String (String, String, Int))
+mcomp :: Monad m =>
+         (b -> m c)
+      -> (a -> m b)
+      ->  a -> m c
+mcomp f g a = join $ f <$> (g a)
+
+mcomp' :: Monad m =>
+         (b -> m c)
+      -> (a -> m b)
+      ->  a -> m c
+mcomp' f g a = g a >>= f
 
 main = do
+  quickBatch $ monad (undefined :: Sum String (String, String, Int))
   putStrLn "Test"
