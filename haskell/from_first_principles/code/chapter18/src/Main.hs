@@ -1,5 +1,6 @@
 module Main where
 
+<<<<<<< Updated upstream
 import Control.Monad
 import Test.QuickCheck
 import Test.QuickCheck.Checkers
@@ -9,6 +10,15 @@ data Sum a b =
     First a
   | Second b
   deriving (Eq, Show)
+=======
+import           Test.QuickCheck
+import           Test.QuickCheck.Checkers
+import           Test.QuickCheck.Classes
+
+data Sum a b = First a
+    | Second b
+    deriving (Eq, Show)
+>>>>>>> Stashed changes
 
 instance Functor (Sum a) where
   fmap _ (First a)  = First a
