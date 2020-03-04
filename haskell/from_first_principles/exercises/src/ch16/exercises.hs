@@ -1,6 +1,4 @@
 {-# LANGUAGE FlexibleInstances #-}
-module Main where
-
 import Test.QuickCheck
 
 -- Heavy lifting
