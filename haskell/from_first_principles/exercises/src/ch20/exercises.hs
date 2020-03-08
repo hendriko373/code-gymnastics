@@ -45,3 +45,26 @@ data Constant a b =
 
 instance Foldable (Constant a) where
     foldMap _ c = mempty 
+
+data Two a b =
+    Two a b
+
+instance Foldable (Two a) where
+    foldMap f (Two _ b) = f b
+
+data Three a b c = 
+    Three a b c
+
+instance Foldable (Three a b) where
+    foldMap f (Three _ _ c) = f c
+
+data Three' a b = 
+    Three' a b b
+
+instance Foldable (Three' a) where
+    foldMap f (Three' _ b1 b2) = f b1 <> f b2
+
+filterF :: (Applicative f, Foldable t, Monoid (f a))
+        => (a -> Bool) -> t a -> f a
+filterF g = foldMap (\a -> if g a then pure a else mempty)
+    
