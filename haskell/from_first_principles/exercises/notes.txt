@@ -1,0 +1,31 @@
+sequence :: t (m a) -> m (t a)
+fmap :: (a -> b) -> f a -> f b
+
+    (f a -> f b) ~ t (m a1)
+    (->) (f a) ~ t 
+    f b ~ m a1
+
+    m (t a1) ~ m (m a -> a1)
+
+sequence . fmap :: (Traversable ((->) f a), Monad f) =>
+    (a -> b) -> f (f a -> b)
+
+---
+
+sequence . :: (Traversable t, Monad m) =>
+    (a1 -> t (m a2)) -> a1 -> m (t a2)
+
+(sequence .) . fmap :: ?
+
+    fmap :: Functor f => (a1 -> a2) -> (f a1 -> f a2)
+    Functor f => f a1 -> f a2 ~ (Traversable t, Monad m) :: b1 -> t (m b2)
+        | f a1 ~ b1
+        | f a2 ~ t (m b2)
+
+(sequence .) . fmap :: (a1 -> (m b2)) -> t a1 -> m (t  b2)
+
+
+
+
+(sequence .) . fmap :: (Monad )
+    (a -> b) -> 
