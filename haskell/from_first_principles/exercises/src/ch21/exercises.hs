@@ -1,3 +1,7 @@
+import Test.QuickCheck
+import Test.QuickCheck.Checkers
+import Test.QuickCheck.Classes
+
 -- Identity
 newtype Identity a = Identity a
     deriving (Eq, Show)
@@ -40,7 +44,7 @@ instance Foldable Optional where
 
 instance Traversable Optional where
     traverse _ Nada = pure Nada
-    traverse f (Yep a) = Yep <$> f a
+    traverse f (Yep a) = Yep <$> f a -- pure Yep <*> f a
 
 -- List
 data List a =
@@ -58,4 +62,68 @@ instance Foldable List where
 
 instance Traversable List where
     traverse _ End = pure End
-    traverse f (Cons a as) = flip Cons (traverse f as) <*> f a
+    traverse f (Cons a as) = Cons <$> f a <*> traverse f as
+
+fromList :: [a] -> List a
+fromList = foldr Cons End
+
+instance Arbitrary a => Arbitrary (List a) where
+    arbitrary = do
+        l <- arbitrary
+        return $ fromList l
+
+instance Eq a => EqProp (List a) where
+    (=-=) = eq
+
+testList = quickBatch $ traversable (undefined :: List (Int, Int, [Int]))
+
+-- Three
+data Three a b c = Three a b c
+    deriving (Eq, Show)
+
+instance Functor (Three a b) where
+    fmap f (Three a b c) = Three a b $ f c
+
+instance Foldable (Three a b) where
+    foldMap f (Three a b c) = f c
+
+instance Traversable (Three a b) where
+    traverse f (Three a b c) = (Three a b) <$> f c
+
+-- S
+data S n a = S (n a) a
+    deriving (Eq, Show)
+    -- e.g. S [] Int
+
+instance Functor n => Functor (S n) where
+    fmap f (S m a) = S (fmap f m) $ f a
+
+instance Foldable n => Foldable (S n) where
+    foldMap f (S m a) = foldMap f m <> f a
+
+instance Traversable n => Traversable (S n) where
+    traverse f (S m a) = S <$> traverse f m <*> f a
+
+-- Tree
+data Tree a =
+    Empty
+  | Leaf a
+  | Node (Tree a) a (Tree a)
+  deriving (Eq, Show)
+
+instance Functor Tree where
+    fmap f Empty = Empty
+    fmap f (Leaf a) = Leaf $ f a
+    fmap f (Node tl a tr) = Node (f <$> tl) (f a) (f <$> tr) 
+
+instance Foldable Tree where
+    foldMap _ Empty = mempty
+    foldMap f (Leaf a) = f a
+    foldMap f (Node tl a tr) = 
+        (foldMap f tl) <> (f a) <> (foldMap f tr)
+
+instance Traversable Tree where
+    traverse _ Empty = pure Empty
+    traverse f (Leaf a) = Leaf <$> f a
+    traverse f (Node tl a tr) =
+        Node <$> traverse f tl <*> f a <*> traverse f tr
