@@ -19,6 +19,7 @@ z' n = lookup n $ zip x z
 x1 :: Maybe (Integer, Integer)
 x1 = (,) <$> xs <*> ys
 
+
 x2 :: Maybe (Integer, Integer)
 x2 = (,) <$> ys <*> zs
 
