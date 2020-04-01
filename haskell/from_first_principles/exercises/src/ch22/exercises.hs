@@ -1,3 +1,4 @@
+{-# LANGUAGE InstanceSigs #-}
 import Data.Char
 import Control.Applicative
 
@@ -28,3 +29,36 @@ tupledM = do
 tupledM2 = cap >>=
     (\a -> rev >>=
         (\b -> return (a, b)))
+
+-- Reader
+newtype Reader r a =
+    Reader { runReader :: r -> a}
+
+instance Functor (Reader r) where
+    fmap :: (a -> b) -> Reader r a -> Reader r b
+    fmap f (Reader g) = Reader $ f . g
+
+instance Applicative (Reader r) where
+    pure :: a -> (Reader r a)
+    pure a = Reader $ const a
+
+    (<*>) :: Reader r (a -> b) -> Reader r a -> Reader r b
+    (Reader rf) <*> (Reader ra) = Reader $ \r -> (rf r) (ra r)
+
+instance Monad (Reader r) where
+    return :: a -> Reader r a
+    return = pure
+
+    (>>=) :: Reader r a -> (a -> Reader r b) -> Reader r b
+    (Reader ra) >>= f = Reader $ \r -> runReader (f (ra r)) r
+
+ask :: Reader a a
+ask = Reader id
+
+myLiftA2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c
+myLiftA2 = ((<*>) .) . (<$>)
+-- myLiftA2 g fa fb = g <$> fa <*> fb
+
+asks :: (r -> a) -> Reader r a
+asks f = Reader f
+
