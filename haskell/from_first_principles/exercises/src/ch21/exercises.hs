@@ -64,6 +64,12 @@ instance Traversable List where
     traverse _ End = pure End
     traverse f (Cons a as) = Cons <$> f a <*> traverse f as
 
+-- There is also defined a traverse_ function which performs the actions but
+-- discards the results:
+traverse_ :: Applicative f => (a -> f b) -> List a -> f ()
+traverse_ _ End         = pure ()
+traverse_ f (Cons a as) = flip const <$> f a <*> traverse_ f as
+
 fromList :: [a] -> List a
 fromList = foldr Cons End
 
