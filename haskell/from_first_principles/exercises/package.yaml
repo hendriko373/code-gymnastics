@@ -25,6 +25,12 @@ dependencies:
 - hspec
 - checkers
 - transformers
+- parsers
+- trifecta
+- raw-strings-qq
+- aeson
+- bytestring
+- text
 
 library:
   source-dirs: src
