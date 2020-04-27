@@ -21,11 +21,13 @@ stepForward1 = do
     events' <- get
     let priors = fmap prior events'
     let step = minimum $ fmap h $ filter ((>0) . load) events'
-                where h e = ceiling $ fromInteger (load e) / normalize (prior e) priors
+                where h e = ceiling $ 
+                                fromInteger (load e) / normalize (prior e) priors
     put $ fmap (\e -> 
         if load e > 0 
            then e 
-               { load = load e - ceiling (fromInteger step * normalize (prior e) priors)
+               { load = load e 
+                            - ceiling (fromInteger step * normalize (prior e) priors)
                , deadline = deadline e + step}
            else e) events'
 
