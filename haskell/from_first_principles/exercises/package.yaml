@@ -25,12 +25,14 @@ dependencies:
 - hspec
 - checkers
 - transformers
+- mtl
 - parsers
 - trifecta
 - raw-strings-qq
 - aeson
 - bytestring
 - text
+- scotty
 
 library:
   source-dirs: src
