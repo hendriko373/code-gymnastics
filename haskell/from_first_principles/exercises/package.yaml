@@ -33,6 +33,9 @@ dependencies:
 - bytestring
 - text
 - scotty
+- containers
+- unliftio-core
+- random
 
 library:
   source-dirs: src
